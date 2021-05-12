@@ -1,1 +1,19 @@
-Let's start with the project!
+#Downloading historical data of a stock in Python 
+
+import time 
+import datetime 
+import pandas as pd 
+
+#Enter Symbol of the stock 
+ticker = "DAI.DE"
+
+#Change timeframe and interval 
+period1 = int(time.mktime(datetime.datetime(2020, 1, 1, 23, 59).timetuple()))
+period2 = int(time.mktime(datetime.datetime(2020, 1, 31, 23, 59).timetuple()))
+interval = "1d" # 1d, 1m
+
+#Link to Yahoo Finance 
+query_string = f"https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true"
+
+df = pd.read_csv(query_string)
+print(df)
